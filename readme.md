@@ -5,6 +5,7 @@
 *   CentOS7
 *   python2.7
 *   pip可以正常使用
+*   已安装ansible2
 
 ## 依赖中间件
 
