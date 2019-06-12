@@ -6,6 +6,7 @@
 *   python2.7
 *   pip可以正常使用
 *   已安装ansible2
+*   已安装sshpass
 
 ## 依赖中间件
 
@@ -35,12 +36,14 @@
 ```
 # 将其中ip地址替换即可，如果要增加worker节点则，在opsgratserver组中增加主机即可
 [opsgratserver]
-opsgrat ansible_ssh_host=10.4.20.13 ansible_ssh_user=root role=portal # portal节点只能设置一台(不能没有portal节点)，为opsgrat web管理系统地址 
+opsgrat ansible_ssh_host=10.4.20.13 ansible_ssh_user=root role=portal # portal节点只能设置一台(不能没有portal节点)，为opsgrat web管理系统地址
 opsgrat2 ansible_ssh_host=10.4.20.14 ansible_ssh_user=root role=worker # worker节点可以设置多台
 
 # 将其中ip地址替换成sso的ip地址
 [ssoserver]
 sso ansible_ssh_host=10.4.20.12 ansible_ssh_user=root 
+
+# 如果未配置免密登录则需要在，增加ansible_ssh_pass参数指定主机登录密码
 ```
 
 2.   修改group_vars/all文件中的配置，group_vars/all文件内容及其参数含义如下：
@@ -85,6 +88,7 @@ sso_nginx_port: 8081 # sso nginx进程端口
 3.   进入opsgrat-install目录执行命令一键安装，命令如下：
 
 ```
+export ANSIBLE_HOST_KEY_CHECKING=false
 ansible-playbook -i hosts main.yml 
 ```
 
