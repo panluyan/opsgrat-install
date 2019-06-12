@@ -41,6 +41,14 @@
     - openldap-devel
     - sshpass
 
+- name: Install virtualenv and PyMySQL.
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - virtualenv
+    - PyMySQL
+
 - name: Create opsgrat database.
   mysql_db:
     login_user: "{{ mysql_opsgrat_user }}"
@@ -61,14 +69,6 @@
     state: import
     target: "{{ install_dir }}/opsgrat/docs/opsgrat.sql"
   when: role == "portal"
-
-- name: Install virtualenv and PyMySQL.
-  pip:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - virtualenv
-    - PyMySQL
 
 - name: Install python packages.
   pip:
