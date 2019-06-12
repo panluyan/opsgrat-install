@@ -7,6 +7,7 @@
 *   pip可以正常使用
 *   已安装ansible2
 *   已安装sshpass
+*   已安装MySQL客户端
 
 ## 依赖中间件
 
