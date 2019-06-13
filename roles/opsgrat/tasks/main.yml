@@ -34,12 +34,21 @@
     owner: "{{ opsgrat_user }}"
     group: "{{ opsgrat_group }}"
 
+- name: Copy opsgrat configs.py
+  template:
+    src: "configs.py.j2"
+    dest: "{{ install_dir }}/opsgrat/opsgrat/configs.py"
+    owner: "{{ opsgrat_user }}"
+    group: "{{ opsgrat_group }}"
+
 - name: Install dev packeges.
   yum: name={{ item }} state=present
   with_items:
     - openldap
     - openldap-devel
     - sshpass
+    - git
+    - svn
 
 - name: Install virtualenv and PyMySQL.
   pip:
