@@ -104,3 +104,13 @@ ansible-playbook -i hosts main.yml
   - 点击菜单管理-》子系统管理
   - 修改OpsGrat和sso的访问路径
 
+## 导入License
+
+1.   申请试用或者购买的时候会将License发送到填写的邮箱，先将License文件下载到本地
+2.   进入opsgrat系统，由于首次安装还未导入License，系统会跳转到License导入页面，本地opsgrat地址为：http://10.4.20.12:8080/
+3.   点击“导入”按钮，选择License文件后点击上传即可
+
+## 技术支持
+
+*   如果您在安装过程中碰到任何问题，请发送邮件到：support@shfanxi.com
+
