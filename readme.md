@@ -2,12 +2,17 @@
 
 ## 服务器环境要求
 
-*   CentOS7
+*   CentOS 7或Red Hat 7
 *   python2.7
 *   pip可以正常使用
 *   已安装ansible2
 *   已安装sshpass
 *   已安装MySQL客户端
+
+## 服务器配置要求
+
+*   Cpu 4Core
+*   内存 8G
 
 ## 依赖中间件
 
