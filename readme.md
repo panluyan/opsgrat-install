@@ -5,7 +5,7 @@
 *   CentOS 7或Red Hat 7
 *   python2.7
 *   pip可以正常使用
-*   已安装ansible2
+*   已安装ansible2 (最好为ansible2.7)
 *   已安装sshpass
 *   已安装MySQL客户端
 
