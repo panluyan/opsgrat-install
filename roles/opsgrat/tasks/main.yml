@@ -34,10 +34,10 @@
     owner: "{{ opsgrat_user }}"
     group: "{{ opsgrat_group }}"
 
-- name: Copy opsgrat configs.py
+- name: Copy opsgrat configs.yml
   template:
-    src: "configs.py.j2"
-    dest: "{{ install_dir }}/opsgrat/opsgrat/configs.py"
+    src: "configs.yml.j2"
+    dest: "{{ install_dir }}/opsgrat/opsgrat/configs.yml"
     owner: "{{ opsgrat_user }}"
     group: "{{ opsgrat_group }}"
 
