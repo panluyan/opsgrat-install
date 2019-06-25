@@ -58,6 +58,9 @@
     - virtualenv
     - PyMySQL
 
+- name: Install ansible 2.7
+  pip: name=ansible version=2.7 state=present
+
 - name: Create opsgrat database.
   mysql_db:
     login_user: "{{ mysql_opsgrat_user }}"
