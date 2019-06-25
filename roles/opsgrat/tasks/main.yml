@@ -34,12 +34,32 @@
     owner: "{{ opsgrat_user }}"
     group: "{{ opsgrat_group }}"
 
+- name: Copy opsgrat configs.py
+  template:
+    src: "configs.py.j2"
+    dest: "{{ install_dir }}/opsgrat/opsgrat/configs.py"
+    owner: "{{ opsgrat_user }}"
+    group: "{{ opsgrat_group }}"
+
 - name: Install dev packeges.
   yum: name={{ item }} state=present
   with_items:
     - openldap
     - openldap-devel
     - sshpass
+    - git
+    - svn
+
+- name: Install virtualenv and PyMySQL.
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - virtualenv
+    - PyMySQL
+
+- name: Install ansible 2.7
+  pip: name=ansible version=2.7 state=present
 
 - name: Create opsgrat database.
   mysql_db:
@@ -61,14 +81,6 @@
     state: import
     target: "{{ install_dir }}/opsgrat/docs/opsgrat.sql"
   when: role == "portal"
-
-- name: Install virtualenv and PyMySQL.
-  pip:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - virtualenv
-    - PyMySQL
 
 - name: Install python packages.
   pip:

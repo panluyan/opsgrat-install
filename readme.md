@@ -2,10 +2,17 @@
 
 ## 服务器环境要求
 
-*   CentOS7
+*   CentOS 7或Red Hat 7
 *   python2.7
 *   pip可以正常使用
-*   已安装ansible2
+*   已安装ansible2.7+
+*   已安装sshpass
+*   已安装MySQL客户端
+
+## 服务器配置要求
+
+*   Cpu 4Core
+*   内存 8G
 
 ## 依赖中间件
 
@@ -35,12 +42,14 @@
 ```
 # 将其中ip地址替换即可，如果要增加worker节点则，在opsgratserver组中增加主机即可
 [opsgratserver]
-opsgrat ansible_ssh_host=10.4.20.13 ansible_ssh_user=root role=portal # portal节点只能设置一台(不能没有portal节点)，为opsgrat web管理系统地址 
+opsgrat ansible_ssh_host=10.4.20.13 ansible_ssh_user=root role=portal # portal节点只能设置一台(不能没有portal节点)，为opsgrat web管理系统地址
 opsgrat2 ansible_ssh_host=10.4.20.14 ansible_ssh_user=root role=worker # worker节点可以设置多台
 
 # 将其中ip地址替换成sso的ip地址
 [ssoserver]
 sso ansible_ssh_host=10.4.20.12 ansible_ssh_user=root 
+
+# 如果未配置免密登录则需要在，增加ansible_ssh_pass参数指定主机登录密码
 ```
 
 2.   修改group_vars/all文件中的配置，group_vars/all文件内容及其参数含义如下：
@@ -85,6 +94,7 @@ sso_nginx_port: 8081 # sso nginx进程端口
 3.   进入opsgrat-install目录执行命令一键安装，命令如下：
 
 ```
+export ANSIBLE_HOST_KEY_CHECKING=false
 ansible-playbook -i hosts main.yml 
 ```
 
@@ -98,4 +108,14 @@ ansible-playbook -i hosts main.yml
 2.   修改sso和opsgrat的访问地址：
   - 点击菜单管理-》子系统管理
   - 修改OpsGrat和sso的访问路径
+
+## 导入License
+
+1.   申请试用或者购买的时候会将License发送到填写的邮箱，先将License文件下载到本地
+2.   进入opsgrat系统，由于首次安装还未导入License，系统会跳转到License导入页面，本地opsgrat地址为：http://10.4.20.12:8080/
+3.   点击“导入”按钮，选择License文件后点击上传即可
+
+## 技术支持
+
+*   如果您在安装过程中碰到任何问题，请发送邮件到：support@shfanxi.com
 

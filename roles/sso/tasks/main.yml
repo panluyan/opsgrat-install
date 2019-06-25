@@ -47,6 +47,14 @@
     - openldap
     - openldap-devel
 
+- name: Install virtualenv and PyMySQL.
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - virtualenv
+    - PyMySQL
+
 - name: Create sso database.
   mysql_db:
     login_user: "{{ mysql_sso_user }}"
@@ -66,14 +74,6 @@
     name: "{{ mysql_sso_db }}"
     state: import
     target: "{{ install_dir }}/sso/docs/sso.sql"
-
-- name: Install virtualenv and PyMySQL.
-  pip:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - virtualenv
-    - PyMySQL
 
 - name: Install python packages.
   pip:
