@@ -30,7 +30,7 @@
 - name: Copy uwsgi.ini
   template:
     src: "uwsgi.ini.j2"
-    dest: "{{ install_dir }}/opsgrat/uwsgi.ini"
+    dest: "{{ install_dir }}/uwsgi.ini"
     owner: "{{ opsgrat_user }}"
     group: "{{ opsgrat_group }}"
 
@@ -49,6 +49,7 @@
     - sshpass
     - git
     - svn
+    - mariadb
 
 - name: Install virtualenv and PyMySQL.
   pip:
@@ -70,6 +71,7 @@
     encoding: utf8mb4
     name: "{{ mysql_opsgrat_db }}"
     state: present
+  when: role == "portal"
 
 - name: Import opsgrat tables.
   mysql_db:
@@ -114,8 +116,10 @@
   file: 
     path: /etc/nginx/conf.d/default.conf
     state: absent
+  when: role == "portal"
 
 - name: Copy nginx config
   template: src="opsgrat.conf.j2" dest="/etc/nginx/conf.d/opsgrat.conf" owner=root group=root mode=0644
   notify:
   - restart nginx
+  when: role == "portal"

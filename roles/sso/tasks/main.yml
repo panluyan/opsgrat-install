@@ -46,6 +46,7 @@
   with_items:
     - openldap
     - openldap-devel
+    - mariadb
 
 - name: Install virtualenv and PyMySQL.
   pip:
