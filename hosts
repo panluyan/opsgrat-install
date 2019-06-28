@@ -1,6 +1,5 @@
 [opsgratserver]
-opsgrat ansible_ssh_host=134.175.14.227 ansible_ssh_user=root role=portal
-# opsgrat ansible_ssh_host=10.4.20.14 ansible_ssh_user=root role=worker
+opsgrat ansible_ssh_host=47.102.131.121 ansible_ssh_user=root role=portal 
 
 [ssoserver]
-sso ansible_ssh_host=134.175.14.227 ansible_ssh_user=root
+sso ansible_ssh_host=47.102.131.121 ansible_ssh_user=root

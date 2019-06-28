@@ -2,7 +2,7 @@
 user={{ opsgrat_user }}
 group={{ opsgrat_group }}
 stopasgroup=true
-command={{ install_dir }}/venv/bin/celery -A opsgrat worker --loglevel=INFO --time-limit=86400 -Ofair --concurrency=10 -Q opsgrat_job --logfile={{ log_dir }}/opsgrat-worker.log --pidfile={{ pid_dir }}/opsgrat-worker.pid
+command={{ install_dir }}/venv/bin/celery -A opsgrat worker --loglevel=INFO --time-limit=86400 -Ofair --concurrency=5 -Q opsgrat_job --logfile={{ log_dir }}/opsgrat-worker.log --pidfile={{ pid_dir }}/opsgrat-worker.pid
 directory={{ install_dir }}/opsgrat
 autostart=true
 autorestart=true
