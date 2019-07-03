@@ -30,6 +30,8 @@ h2 img{ margin-right: 5px; }
 .main .content .installing{}
 .main .content .success{font-size: 28px; text-align: center; }
 .main .content .success span{ font-size: 40px; color: #fff;  display: inline-block; width: 80px;height: 80px; line-height: 80px; text-align: center; border-radius: 50%;  background-color:#2bc203; margin-bottom: 15px;  }
+.main .content .scroll-box{height: 290px;overflow: auto;}
+
 
 
 .page{ text-align: right; }
